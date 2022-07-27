@@ -1,14 +1,42 @@
-﻿using System;
-using Discord;
+﻿using DSharpPlus;
+using Microsoft.Extensions.Configuration;
 
 namespace DiscordBot
 {
     static class DiscordBot
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
-            Console.WriteLine("Ho");
+            MainAsync().GetAwaiter().GetResult();
         }
+
+        static async Task MainAsync()
+        {
+            var source = new CancellationTokenSource();
+            var token = source.Token;
+            
+            var config = new ConfigurationBuilder().AddJsonFile("botSettings.json",true).Build();
+            
+            var discord = new DiscordClient(new DiscordConfiguration()
+            {
+                Token = config["discordToken"],
+                TokenType = TokenType.Bot,
+            });
+            
+            discord.MessageCreated += async (client,args) =>
+            {
+                if (args.Message.Content.StartsWith("??"))
+                {
+                    await client.SendMessageAsync(args.Channel ,"Hi!");
+                }
+            };
+            
+            await discord.ConnectAsync();
+            
+            await Task.Delay(-1, token);
+            
+        }
+        
     }
 };
 
