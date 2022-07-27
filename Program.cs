@@ -1,4 +1,5 @@
-﻿using DSharpPlus;
+﻿using System;
+using DSharpPlus;
 using Microsoft.Extensions.Configuration;
 
 namespace DiscordBot
@@ -15,11 +16,14 @@ namespace DiscordBot
             var source = new CancellationTokenSource();
             var token = source.Token;
             
-            var config = new ConfigurationBuilder().AddJsonFile("botSettings.json",true).Build();
+            var config = new ConfigurationBuilder()
+                .AddJsonFile("botSettings.json",true)
+                .AddUserSecrets(typeof(DiscordBot).Assembly, true)
+                .Build();
             
             var discord = new DiscordClient(new DiscordConfiguration()
             {
-                Token = config["discordToken"],
+                Token = config["botToken"],
                 TokenType = TokenType.Bot,
             });
             
