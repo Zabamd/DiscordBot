@@ -1,5 +1,7 @@
 ﻿using System;
+using DiscordBot.Controller;
 using DSharpPlus;
+using DSharpPlus.CommandsNext;
 using Microsoft.Extensions.Configuration;
 
 namespace DiscordBot
@@ -18,7 +20,6 @@ namespace DiscordBot
             
             var config = new ConfigurationBuilder()
                 .AddJsonFile("botSettings.json",true)
-                .AddUserSecrets(typeof(DiscordBot).Assembly, true)
                 .Build();
             
             var discord = new DiscordClient(new DiscordConfiguration()
@@ -26,14 +27,13 @@ namespace DiscordBot
                 Token = config["botToken"],
                 TokenType = TokenType.Bot,
             });
-            
-            discord.MessageCreated += async (client,args) =>
-            {
-                if (args.Message.Content.StartsWith("??"))
-                {
-                    await client.SendMessageAsync(args.Channel ,"Hi!");
-                }
-            };
+
+            var commands = discord.UseCommandsNext(new CommandsNextConfiguration()
+            { 
+                StringPrefixes = new[] { "??" }
+            });
+
+            commands.RegisterCommands<CommandHandler>();
             
             await discord.ConnectAsync();
             
