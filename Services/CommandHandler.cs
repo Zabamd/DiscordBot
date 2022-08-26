@@ -11,7 +11,7 @@ namespace DiscordBot.Controller;
 
 public class CommandHandler: BaseCommandModule
 {
-    protected DiscordEmbedBuilder _embed;
+    private DiscordEmbedBuilder _embed;
 
     [Command("Hi")]
     [Description("A simple welcome")]
@@ -25,20 +25,5 @@ public class CommandHandler: BaseCommandModule
         _embed.AddField("Hi!","What's on your mind?");
         await context.RespondAsync(_embed);
     }
-    
-
-    [Command("AddEvent")]
-    [Description("Add new event to your schedule \n ??AddEvent {event name} -d {date} -p {place}  \n -d and -p are optional")]
-    private async Task AddCommand(CommandContext context, [RemainingText, Description("Command string")] string command)
-    {
-        _embed = new DiscordEmbedBuilder()
-        {
-            Color = DiscordColor.Blue,
-        };
-        _embed.Timestamp = DateTimeOffset.Now;
-        _embed.Title = command.Split(" ")[1];
-        await context.RespondAsync($"added {command}");
-    }
-
 
 }
