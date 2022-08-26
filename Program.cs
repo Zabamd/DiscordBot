@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using DiscordBot.Controller;
 using DSharpPlus;
 using DSharpPlus.CommandsNext;
@@ -22,6 +22,7 @@ namespace DiscordBot
                 .AddJsonFile("botSettings.json",true)
                 .Build();
             
+            //Retrieve token form botSettings.json (gitignore)
             var discord = new DiscordClient(new DiscordConfiguration()
             {
                 Token = config["botToken"],
