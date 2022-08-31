@@ -11,9 +11,10 @@
 *.sln.docstates
 botSettings.json
 
+botSettings.json
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
-
+botSettings.json
 # Mono auto generated files
 mono_crash.*
 
