@@ -1,10 +1,45 @@
+<<<<<<< Updated upstream
 <Project Sdk="Microsoft.NET.Sdk">
 
+=======
+﻿<Project Sdk="Microsoft.NET.Sdk;Microsoft.NET.Sdk.Publish">
+>>>>>>> Stashed changes
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+<<<<<<< Updated upstream
 
 </Project>
+=======
+  <ItemGroup>
+    <PackageReference Include="DSharpPlus" Version="4.3.0-nightly-01159" />
+    <PackageReference Include="DSharpPlus.CommandsNext" Version="4.3.0-nightly-01159" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.0-preview.6.22324.4" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0-preview.6.22324.4" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0-preview.6.22324.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta1" />
+    <PackageReference Include="RestClient" Version="3.968.19454" />
+    <PackageReference Include="System.Net.WebSockets.Client" Version="4.3.2" />
+    <PackageReference Include="xunit" Version="2.4.2-pre.12" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="botSettings.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="Settings.job">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Remove="LotrQuoteApi\**" />
+    <None Remove="Test\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="LotrQuoteApi\**" />
+    <Compile Remove="Test\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="LotrQuoteApi\**" />
+    <EmbeddedResource Remove="Test\**" />
+  </ItemGroup>
+</Project>
+>>>>>>> Stashed changes
