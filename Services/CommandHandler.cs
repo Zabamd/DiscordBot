@@ -17,7 +17,7 @@ public class CommandHandler: BaseCommandModule
         {
             Color = DiscordColor.Red,
             Title = "What's on your mind?",
-            Description = "Gimli, son of Glóin,",
+            Description = "Gimli, son of Glóin",
 
         };
         _embed.WithImageUrl("https://upload.wikimedia.org/wikipedia/commons/8/8e/Gimli_son_of_Gloin_by_Perrie_Nicholas_Smith.jpg");
